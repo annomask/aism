@@ -1,0 +1,260 @@
+[package]
+name = "reefsdb"
+version = "0.1.0"
+edition = "2024"
+publish = false
+license = "Apache-2.0"
+
+[dependencies]
+arrow-array = "59.3.0"
+arrow-schema = "59.3.0"
+atoi_simd = "0.16.0"
+byteorder = "1.5.0"
+bytes = "1.1.0"
+chrono = "0.4.38"
+crc32fast = "1.3.2"
+crossbeam-channel = "0.5"
+crossbeam-utils = "0.8.2"
+fast-float = "0.2.0"
+flate2 = "1.0.29"
+futures = "0.3"
+integer-encoding = "3.0.3"
+itoa = "1.0.11"
+libc = "0.2"
+num_cpus = "1.13.1"
+once_cell = "1.20.2"
+parking_lot = "0.12.0"
+paste = "1.0.15"
+prost = "0.13"
+rand = "0.8.5"
+regex = "1.5.6"
+roaring = "0.10.2"
+ryu = "1.0.18"
+scopeguard = "1.2.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+snafu = "0.7.0"
+snap = "1.0.5"
+tempfile = "3.0.7"
+tokio = { version = "1.19.2", features = ["full"] }
+tokio-util = "0.7.3"
+tracing = { version = "0.1", features = ["log", "max_level_trace"] }
+twox-hash = "1.6.3"
+xorfilter-rs = "0.5.1"
+
+[build-dependencies]
+prost-build = "0.13"
+
+[dev-dependencies]
+assert_cmd = "0.11.0"
+criterion = { version = "0.4", features = ["html_reports", "async_tokio"] }
+ctor = "0.2.9"
+lazy_static = "1.4.0"
+rand_core = "0.6.4"
+redb = "4.1.0"
+tokio-test = "0.4.4"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+uuid = { version = "1.8.0", features = ["v4"] }
+
+[features]
+benchmarking = []
+slow-trace = []
+test-support = []
+mock_file_store = []
+mock_vlog_file_store = []
+mock_compact_plan = []
+mock_vlog_compact_plan = []
+
+[[bench]]
+name = "common_hll"
+path = "benches/common/hll.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "series_set"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "series_file"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsi1_index_file"
+path = "benches/tsi1/index_file.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsi1_tag_block"
+path = "benches/tsi1/tag_block.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsi1_log_file"
+path = "benches/tsi1/log_file.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsi1_index"
+path = "benches/tsi1/index.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_wal"
+path = "benches/tsm1/wal.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_ring"
+path = "benches/tsm1/ring.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_cache"
+path = "benches/tsm1/cache.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_int"
+path = "benches/tsm1/int.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_float"
+path = "benches/tsm1/float.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_bool"
+path = "benches/tsm1/bool.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_string"
+path = "benches/tsm1/string.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_timestamp"
+path = "benches/tsm1/timestamp.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_simple8b"
+path = "benches/tsm1/simple8b.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_batch_int"
+path = "benches/tsm1/batch_int.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_batch_float"
+path = "benches/tsm1/batch_float.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_batch_bool"
+path = "benches/tsm1/batch_bool.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_batch_timestamp"
+path = "benches/tsm1/batch_timestamp.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_batch_string"
+path = "benches/tsm1/batch_string.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_encoding_values"
+path = "benches/tsm1/encoding_values.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_encoding"
+path = "benches/tsm1/encoding.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_array_values"
+path = "benches/tsm1/array_values.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_array_encoding"
+path = "benches/tsm1/array_encoding.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_reader"
+path = "benches/tsm1/reader.rs"
+harness = false
+required-features = ["benchmarking"]
+
+[[bench]]
+name = "bench_tsm1_encoding_pools"
+path = "benches/tsm1/encoding_pools.rs"
+harness = false
+required-features = ["benchmarking"]
+
+# This profile optimizes for runtime performance and small binary size at the expense of longer
+# build times. It's most suitable for final release builds.
+[profile.release]
+codegen-units = 1
+lto = "fat"
+debug = false
+incremental = false
+
+[profile.dev]
+debug = true
+incremental = true
+panic = "abort"
+
+[profile.test]
+opt-level = 0
+debug = true
+codegen-units = 16
+lto = false
+
+[profile.bench]
+debug = true
+overflow-checks = false
+
+# This profile optimizes for short build times at the expense of larger binary size and slower
+# runtime performance. It's most suitable for development iterations.
+[profile.quick-release]
+inherits = "release"
+codegen-units = 16
+lto = false
+incremental = true
+
+# [build]
+# rustflags = ["-C", "target-cpu=native"]

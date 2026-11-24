@@ -1,0 +1,16 @@
+# Local builds and editor state
+**/target/
+**/bin/
+**/dist/
+**/vendor/
+**/node_modules/
+**/__pycache__/
+**/.idea/
+**/.vscode/
+**/.env
+*.log
+*.prof
+*.test
+*.exe
+*.pdb
+.DS_Store

@@ -1,0 +1,4 @@
+edition = "2024"
+
+# Reorder import and extern crate statements alphabetically in groups.
+reorder_imports = true
